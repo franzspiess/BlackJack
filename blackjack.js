@@ -40,10 +40,12 @@ function dealHands() {
             let card = deck.pop();
             players[i].Hand.push(card);
             updateDeck();
-            /* renderCard(card, x);
-            updatePoints(); */
+            // renderCard();
+            // updateDeck();
+            // updatePoints();
         }
     }
+    renderCard();
 
 }
 
@@ -79,7 +81,10 @@ var players = [{Name: 'Player1', ID: 1, Points: 0, Hand: []},{Name: 'House', ID:
 } */
 
 function renderCard() {
-    document.getElementById("card10").innerHTML = players[0].Hand[0].suit + " " + players[0].Hand[0].value + '        Points: ' + players[0].Hand[0].weight;
+    document.getElementById("card00").innerHTML = players[0].Hand[0].suit + " " + players[0].Hand[0].value + '        Points: ' + players[0].Hand[0].weight;
+    document.getElementById("card01").innerHTML = players[0].Hand[1].suit + " " + players[0].Hand[1].value + '        Points: ' + players[0].Hand[1].weight;
+    document.getElementById("card10").innerHTML = players[1].Hand[0].suit + " " + players[1].Hand[0].value + '        Points: ' + players[1].Hand[0].weight;
+    document.getElementById("card11").innerHTML = players[1].Hand[1].suit + " " + players[1].Hand[1].value + '        Points: ' + players[1].Hand[1].weight;
 }
 /* */ 
 function start() {
@@ -87,5 +92,5 @@ function start() {
     shuffle();
     updateDeck();
     dealHands();
-    renderCard();   
+    //renderCard();   
 }
