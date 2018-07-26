@@ -1,6 +1,18 @@
 var suits = ['Spades', 'Hearts','Diamonds','Clubs'];
 var values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
 var deck = [];
+var points0 = 0;
+var points1 = 0;
+var y = 2;
+var z = 2;
+var card0 = 'card0';
+var card1 = 'card1';
+
+function reset() {
+    deck = [];
+    points0 = 0;
+    points1 = 0;
+}
 
 function createDeck() {
     for (let i=0; i < values.length; i++){
@@ -39,13 +51,14 @@ function dealHands() {
         for (let x = 0; x<2; x++) {
             let card = deck.pop();
             players[i].Hand.push(card);
-            updateDeck();
+            //updateDeck();
             // renderCard();
             // updateDeck();
             // updatePoints();
         }
     }
-    renderCard();
+    //updatePoints();
+    //renderCard();
 
 }
 
@@ -81,16 +94,59 @@ var players = [{Name: 'Player1', ID: 1, Points: 0, Hand: []},{Name: 'House', ID:
 } */
 
 function renderCard() {
-    document.getElementById("card00").innerHTML = players[0].Hand[0].suit + " " + players[0].Hand[0].value + '        Points: ' + players[0].Hand[0].weight;
-    document.getElementById("card01").innerHTML = players[0].Hand[1].suit + " " + players[0].Hand[1].value + '        Points: ' + players[0].Hand[1].weight;
-    document.getElementById("card10").innerHTML = players[1].Hand[0].suit + " " + players[1].Hand[0].value + '        Points: ' + players[1].Hand[0].weight;
-    document.getElementById("card11").innerHTML = players[1].Hand[1].suit + " " + players[1].Hand[1].value + '        Points: ' + players[1].Hand[1].weight;
+    document.getElementById("card00").innerHTML = players[0].Hand[0].suit + " " + players[0].Hand[0].value;// + '        Points: ' + players[0].Hand[0].weight;
+    document.getElementById("card01").innerHTML = players[0].Hand[1].suit + " " + players[0].Hand[1].value;// + '        Points: ' + players[0].Hand[1].weight;
+    document.getElementById("score0").innerHTML = points0;
+    document.getElementById("card10").innerHTML = players[1].Hand[0].suit + " " + players[1].Hand[0].value;// + '        Points: ' + players[1].Hand[0].weight;
+    document.getElementById("card11").innerHTML = players[1].Hand[1].suit + " " + players[1].Hand[1].value;
+    document.getElementById("score1").innerHTML = points1;
 }
 /* */ 
 function start() {
+    reset();
     createDeck();
     shuffle();
     updateDeck();
     dealHands();
-    //renderCard();   
+    updatePoints();
+    renderCard();   ;
+}
+
+
+ function updatePoints() {
+        for (let x=0; x<2; x++) {
+            points0 += players[0].Hand[x].weight;}
+            console.log(points0);
+        for (let x=0; x<2; x++) {
+            points1 += players[1].Hand[x].weight;}
+            console.log(points1);
+} 
+
+dealHands();
+updatePoints();
+
+function hitMe() {
+    let card = deck.pop();
+    players[0].Hand.push(card);
+    document.getElementById(card0 + y).innerHTML = players[0].Hand[y].suit + " " + players[0].Hand[y].value;
+    points0 += players[0].Hand[y].weight;
+    document.getElementById("score0").innerHTML = points0;
+    y++;
+    if (points0 > 21) {
+        document.getElementById("result0").innerHTML = 'YOU LOSE!'
+    }
+    
+}
+
+function stay() {
+    while (points1 <= 21) {
+        let card = deck.pop();
+        players[0].Hand.push(card);
+        document.getElementById(card1 + z).innerHTML = players[1].Hand[z].suit + " " + players[1].Hand[z].value;
+        points1 += players[1].Hand[z].weight;
+        document.getElementById("score1").innerHTML = points1;
+        z++;
+    }
+    document.getElementById("result1").innerHTML = 'HOUSE LOSES!'
+
 }
