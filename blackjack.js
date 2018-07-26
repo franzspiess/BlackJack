@@ -150,3 +150,4 @@ function stay() {
     document.getElementById("result1").innerHTML = 'HOUSE LOSES!'
 
 }
+//
