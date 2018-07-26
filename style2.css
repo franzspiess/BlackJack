@@ -1,0 +1,63 @@
+header {
+    height:50px;
+}
+
+body {
+    
+}
+
+h1 {
+    color: #008000;
+}
+
+#player0 {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    border: 2px black solid;
+}
+#player1 {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    border: 2px black solid;
+
+}
+
+.grid {
+    display: grid;
+    height: 500 px;
+    width: 700 px;
+    grid-template-rows: 200px 200px 1fr;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 10px 10px;
+    background-color: #008000;
+
+   
+}
+
+#game0 {
+    grid-column-start: 2;
+    border: 2px black solid;
+}
+#game1 {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    border: 2px black solid;
+}
+
+#deck {
+    grid-row-start: 3;
+}
+
+.card{
+    width: 70px;
+    height: 100px;
+    padding: 10px;
+    border: solid 1px #808080;
+    background-color: white;
+    display: inline-block;
+    border-radius: 10px;
+    font-size: 8pt;
+    text-align: center;
+    margin: 3px;
+}
+

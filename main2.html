@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./style2.css">
+    <script src="blackjack2.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<header>
+    <h1>My Game Of Black Jack</h1>
+</header>
+
+
+<body> 
+    <div class="grid">   
+        <div class='player' id='player0'>
+            Player 1
+            <input type="button" class="btn" value="start" onclick="start()" />
+            <input type="button" class="btn" value="hit me" onclick="hitMe()" />
+            <input type="button" class="btn" value="stay" onclick="stay()" />
+        </div>
+        <div class='player' id='player1'>
+            House
+        </div>
+        <div id = "game0">
+           <!-- <ul>
+                <li id='card00'></li>
+                <li id='card01'></li>
+                <li id='card02'></li>
+                <li id='card03'></li>
+                <li id='card04'></li>
+                <li id='card05'></li>
+            </ul> -->
+            <p id='score0'></p>
+            <p id='result0'></p>
+        </div>
+        <div  id = "game1">
+            <ul>
+                <li id='card10'></li>
+                <li id='card11'></li>
+                <li id='card12'></li>
+                <li id='card13'></li>
+                <li id='card14'></li>
+                <li id='card15'></li>
+            </ul>
+            <p id='score1'></p>
+            <p id='result1'></p>
+        </div>
+
+        <div id="deck">
+
+        </div>
+    </div>
+</body>
+
+
+</html>
