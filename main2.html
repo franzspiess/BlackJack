@@ -15,15 +15,30 @@
     <div class="grid">   
         <div class='player' id='player0'>
             Player 1
-            <input type="button" class="btn" value="start" onclick="start()" />
-            <input type="button" class="btn" value="hit me" onclick="hitMe()" />
-            <input type="button" class="btn" value="stay" onclick="stay()" />
+            <div class='buttons'>
+                <input type="button" class="btn" value="PLAY" onclick="start()" />
+                <input type="button" class="btn" value="HIT ME" onclick="hitMe()" />
+                <input type="button" class="btn" value="STAY" onclick="stay()" />
+                <input type="button" class="btn" value="RESET" onclick="reset()" />
+            </div>
+            <div class="scoreresult">
+                    <p id='score0'></p>
+                    <p id='result0'></p>
+            </div>
+
         </div>
         <div class='player' id='player1'>
             House
+            <div class="scoreresult">
+                    <p id='score1'></p>
+                    <p id='result1'></p>
+            </div>
         </div>
+        
+
         <div id = "game0">
-           <!-- <ul>
+            <div class = "cards0">
+          <!--  <ul>
                 <li id='card00'></li>
                 <li id='card01'></li>
                 <li id='card02'></li>
@@ -31,20 +46,22 @@
                 <li id='card04'></li>
                 <li id='card05'></li>
             </ul> -->
-            <p id='score0'></p>
-            <p id='result0'></p>
+            </div>
+            
+            
         </div>
         <div  id = "game1">
-            <ul>
+                <div class = "cards1">
+            <!-- <ul>
                 <li id='card10'></li>
                 <li id='card11'></li>
                 <li id='card12'></li>
                 <li id='card13'></li>
                 <li id='card14'></li>
                 <li id='card15'></li>
-            </ul>
-            <p id='score1'></p>
-            <p id='result1'></p>
+            </ul>-->
+            </div>
+            
         </div>
 
         <div id="deck">
