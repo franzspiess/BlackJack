@@ -56,9 +56,9 @@ function dealHands() {
     for (let i = 0; i<2; i++) {
         for (let x = 0; x<2; x++) {
             let card = deck.pop();
-            if (card.weight = 11){
+            /*if (card.weight = 11){
                 players[i].AceCount +=1
-            } 
+            } */
             players[i].Hand.push(card);
             
             // updateDeck();
@@ -189,7 +189,7 @@ function stayInner() {
         $("#score1").html("YOUR SCORE: " + points1);
         z++;
     }
-    if (points0 <21 && points1 > 21) {
+    if (points0 <= 21 && points1 > 21) {
         $("#result0").html("PLAYER WINS");
         $("#result1").html("HOUSE LOSES");
     }
@@ -215,6 +215,6 @@ function checkScore() {
 
 }
 
-function aceCheck() {
+/*function aceCheck() {
 
-}
+}*/
