@@ -180,7 +180,7 @@ function hitMe() {
         points0 -= 10;
         players[0].AceCount --;
         $("#score0").html("YOUR SCORE: " + points0);
-        $("#acecount0").html(players[0].AceCount);
+        
     } 
     
     if (points0 > 21) { 
@@ -237,10 +237,10 @@ function checkScore() {
 
 }
 
-function aceCheck(u) {
+/*function aceCheck(u) {
     if (player[u].AceCount > 0) {
         players[u].Points -= 10;
     }
 }
 
-//
+*/
