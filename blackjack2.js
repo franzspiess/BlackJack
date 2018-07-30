@@ -10,8 +10,21 @@ var card0 = 'card0';
 var card1 = 'card1';
 var count = 0;
 var u = 0;
+var o = 0;
+
+function getName() {
+    if (o === 0) {
+    var playerName = prompt("Please enter your name", "BRETT MAVERICK");
+     if (playerName != null) {
+        playerName = playerName.toUpperCase();
+        $('.name').html(playerName);
+    }
+    o++;
+}
+}
 
 function reset() {
+    players = [{Name: 'Player1', ID: 1, Points: 0, Hand: [], AceCount: 0},{Name: 'House', ID:2, Points: 0, Hand: [], AceCount: 0}];;
     deck.length = 0;
     points0 = 0;
     points1 = 0;
@@ -28,17 +41,19 @@ function reset() {
 }
 
 function createDeck() {
-    for (let i=0; i < values.length; i++){
-        for (let x = 0; x < suits.length;x++) {
-            var weight = parseInt(values[i]);
-            if (values[i] === 'J' || values[i] === 'Q' || values[i] === 'K') 
+    for (let g = 0; g<3; g++){
+        for (let i=0; i < values.length; i++){
+            for (let x = 0; x < suits.length;x++) {
+                var weight = parseInt(values[i]);
+                if (values[i] === 'J' || values[i] === 'Q' || values[i] === 'K') 
                 weight = 10;
-            if (values[i] === 'A') 
+                if (values[i] === 'A') 
                 weight = 11;
-            var card = { value: values[i], suit: suits[x], weight: weight }
-            deck.push(card);
+                var card = { value: values[i], suit: suits[x], weight: weight }
+                deck.push(card);
         }
     }
+}
 }
 
 createDeck();
@@ -75,6 +90,17 @@ function dealHands() {
             //updatePoints();
         }
     }
+    
+        
+    if (players[0].AceCount === 2) {
+            points0 -= 10;
+    };
+        
+    if (players[1].AceCount === 2) {
+            points1 -= 10;
+    };
+
+    
     updatePoints();
     updateDeck();
     renderCard();
@@ -85,7 +111,8 @@ function dealHands() {
 
 function updateDeck() {
     document.getElementById('deck').innerHTML = deck.length;
-    $("#acecount0").html(players[0].AceCount);
+    // $("#acecount0").html(players[0].AceCount);
+    // $("#acecount1").html(players[1].AceCount);
 
 }
 
@@ -142,6 +169,7 @@ function renderCard() {
 }
 /* */ 
 function start() {
+    getName();
     reset();
     createDeck();
     shuffle();
@@ -169,6 +197,10 @@ console.log(players[0].Hand.AceCount)
 function hitMe() {
     let card = deck.pop();
     updateDeck();
+    if (card.weight === 11) {
+        players[0].AceCount ++
+    }
+
     players[0].Hand.push(card);
     //document.getElementById(card0 + y).innerHTML = players[0].Hand[y].suit + " " + players[0].Hand[y].value;
     $( ".cards0" ).append( "<div class='card'>"+players[0].Hand[y].suit + " " + players[0].Hand[y].value+"</div>");
@@ -176,6 +208,7 @@ function hitMe() {
     //document.getElementById("score0").innerHTML = points0;
     $("#score0").html("YOUR SCORE: " + points0);
     y++;
+
     if (points0 > 21 && players[0].AceCount > 0 ) {
         points0 -= 10;
         players[0].AceCount --;
@@ -202,15 +235,24 @@ function stayInner() {
             break;
         }
         let card = deck.pop();
+        if (card.weight === 11) {
+            players[1].AceCount ++
+        }
         updateDeck();
-        players[0].Hand.push(card);
+        players[1].Hand.push(card);
         //document.getElementById(card1 + z).innerHTML = players[1].Hand[z].suit + " " + players[1].Hand[z].value;
-        $( ".cards1" ).append( "<div class='card'>"+players[0].Hand[z].suit + " " + players[0].Hand[z].value+"</div>");
+        $( ".cards1" ).append( "<div class='card'>"+players[1].Hand[z].suit + " " + players[1].Hand[z].value+"</div>");
         points1 += players[1].Hand[z].weight;
         //document.getElementById("score1").innerHTML = points1;
         $("#score1").html("YOUR SCORE: " + points1);
         z++;
-    }
+        if (points1 > 21 && players[1].AceCount > 0 ) {
+            points1 -= 10;
+            players[1].AceCount --;
+            $("#score1").html("YOUR SCORE: " + points1);
+        } 
+    }  
+    
     if (points0 <= 21 && points1 > 21) {
         $("#result0").html("PLAYER WINS");
         $("#result1").html("HOUSE LOSES");
@@ -237,10 +279,15 @@ function checkScore() {
 
 }
 
-/*function aceCheck(u) {
-    if (player[u].AceCount > 0) {
-        players[u].Points -= 10;
-    }
-}
-
-*/
+/*function check17() {
+    if (score0 >=17 && score0 <= 21) {
+        var check = confirm('Sure?');
+        if (check === true) {
+        
+        } else {
+            stay();
+            break;
+        }
+        
+    } else {}
+}; */
